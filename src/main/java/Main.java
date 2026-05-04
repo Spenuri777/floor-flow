@@ -10,10 +10,10 @@ public class Main {
             e.printStackTrace();
         }
 
-        CoordinateSystem cs = new CoordinateSystem();
-        cs.setVisible(true);
-        cs.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        cs.setSize(1920, 1080);
-        cs.setLocationRelativeTo(null);
+        FloorFlow floorFlow = new FloorFlow();
+        floorFlow.setVisible(true);
+        floorFlow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        floorFlow.setSize(1920, 1080);
+        floorFlow.setLocationRelativeTo(null);
     }
 }

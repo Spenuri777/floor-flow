@@ -8,7 +8,7 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 import java.awt.*;
 
-public class CoordinateSystem extends JFrame {
+public class CoordinateSystem extends JPanel {
     ViewportState model = new ViewportState();
 
     public CoordinateSystem () {
@@ -22,7 +22,7 @@ public class CoordinateSystem extends JFrame {
         ));
 
         JPanel corner = new JPanel();
-        corner.setBackground(Color.DARK_GRAY);
+        corner.setBackground(new Color(245, 245, 245));
         add(corner, "width 30!, height 30!");
 
         TopRuler topRuler = new TopRuler(model);
