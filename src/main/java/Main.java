@@ -1,3 +1,6 @@
+import api.ApiClient;
+import ui.LoginWindow;   
+import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 
 import javax.swing.*;
@@ -10,10 +13,13 @@ public class Main {
             e.printStackTrace();
         }
 
-        FloorFlow floorFlow = new FloorFlow();
-        floorFlow.setVisible(true);
-        floorFlow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        floorFlow.setSize(1920, 1080);
-        floorFlow.setLocationRelativeTo(null);
+        FlatLaf.registerCustomDefaultsSource("themes");
+
+        ApiClient apiClient = new ApiClient();
+
+        SwingUtilities.invokeLater(() -> {
+            LoginWindow loginWindow = new LoginWindow(apiClient);
+            loginWindow.setVisible(true);
+        });
     }
 }

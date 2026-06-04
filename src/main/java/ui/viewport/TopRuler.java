@@ -1,16 +1,16 @@
-package components;
+package ui.viewport;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Line2D;
 
-public class LeftRuler extends JPanel implements ViewportListener {
+public class TopRuler extends JPanel implements ViewportListener {
     private ViewportState model;
 
-    public LeftRuler (ViewportState model) {
+    public TopRuler(ViewportState model) {
         this.model = model;
         model.addListener(this);
-        setBackground(new Color(245, 245, 245));
+        setBackground(new Color(243, 243, 243));
     }
 
     @Override
@@ -26,27 +26,27 @@ public class LeftRuler extends JPanel implements ViewportListener {
         double secondaryOffset = primaryOffset * 0.1;
         double step = model.getPrimaryStep();
 
-        if(primaryOffset < 1) return;
+        if (primaryOffset < 1) return;
 
         double size = 100.0 * primaryOffset;
-        double topStart = (height - size) / 2.0 + model.getOffsetY();
+        double leftStart = (width - size) / 2.0 + model.getOffsetX();
 
         g2d.setColor(Color.GRAY);
-        for(double y = topStart; y <= topStart + size; y += secondaryOffset * step) {
-            g2d.draw(new Line2D.Double(width - 5, y, width, y));
+        for (double x = leftStart; x <= leftStart + size; x += secondaryOffset * step) {
+            g2d.draw(new Line2D.Double(x, 0, x, height - 25));
         }
 
         g2d.setColor(Color.BLACK);
         g2d.setFont(new Font("Arial", Font.PLAIN, 10));
 
-        for(double y = topStart; y <= topStart + size; y += primaryOffset * step) {
-            g2d.draw(new Line2D.Double(width - 12, y, width, y));
+        for (double x = leftStart; x <= leftStart + size; x += primaryOffset * step) {
+            g2d.draw(new Line2D.Double(x, 0, x, height - 15));
 
-            String text = Math.round((y - topStart) / primaryOffset) + "m";
-            g2d.drawString(text, 2, (float) y - 3);
+            String text = Math.round((x - leftStart) / primaryOffset) + "m";
+            g2d.drawString(text, (float) x - 5, height - 4);
         }
 
-        g2d.draw(new Line2D.Double(width - 1, 0, width - 1, height));
+        g2d.draw(new Line2D.Double(0, 0, width, 0));
     }
 
     @Override
